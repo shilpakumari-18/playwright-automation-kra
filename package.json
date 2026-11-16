@@ -1,0 +1,23 @@
+{
+  "name": "playwright-automation-kra",
+  "version": "1.0.0",
+  "description": "Playwright JavaScript automation framework for KRA",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shilpakumari-18/playwright-automation-kra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/shilpakumari-18/playwright-automation-kra/issues"
+  },
+  "homepage": "https://github.com/shilpakumari-18/playwright-automation-kra#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.4.0"
+  }
+}
