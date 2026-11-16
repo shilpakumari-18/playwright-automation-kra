@@ -1,0 +1,249 @@
+#JMeter Learning and Practical Implementation – Tata 1mg
+
+1. Overview
+
+As part of the monthly KRA, this activity focuses on learning Apache JMeter and understanding the fundamentals of performance testing.
+
+Tata 1mg is used as a reference web application to gain practical experience in creating and configuring a basic JMeter test plan.
+
+The learning includes understanding JMeter components, configuring HTTP requests, managing virtual users, handling test data using CSV files and understanding how performance test results are displayed.
+
+ 2. Learning Objectives
+
+- Understand the purpose of performance testing.
+- Learn Apache JMeter installation and its interface.
+- Understand the structure of a JMeter Test Plan.
+- Learn Thread Groups and virtual user configuration.
+- Understand HTTP Request Samplers and HTTP Request Defaults.
+- Learn how to configure request headers and response assertions.
+- Understand CSV-based test data handling.
+- Explore Listeners and performance result reports.
+- Understand basic performance testing concepts and metrics.
+- Develop a reusable JMeter test setup for different applications.
+
+3. Tool Used
+
+**Apache JMeter**
+
+Apache JMeter is an open-source tool used to perform load and performance testing of applications and services.
+
+It helps simulate user requests and analyse how a system responds under different workloads.
+
+4. Topics Learned and Practical Implementation
+
+4.1 JMeter Installation and Interface
+
+- Understood the purpose of Apache JMeter.
+- Explored the JMeter graphical user interface.
+- Understood the basic structure and navigation of JMeter.
+
+4.2 Test Plan
+
+A Test Plan is the main container that holds all the components required to configure a test.
+
+Practical implementation:
+- Created a Test Plan named Tata1mg Performance Test.
+- Saved the test plan in JMeter `.jmx` format.
+
+4.3 Thread Group
+
+A Thread Group controls the virtual users and execution settings.
+
+Important configurations:
+
+| Setting | Purpose |
+|---|---|
+| Number of Threads | Defines the number of virtual users |
+| Ramp-up Period | Defines the time taken to start virtual users |
+| Loop Count | Defines how many times each user executes the test flow |
+
+Practical configuration:
+- Number of Threads: 1
+- Ramp-up Period: 1 second
+- Loop Count: 1
+
+4.4 HTTP Request Sampler
+
+An HTTP Request Sampler defines the request that JMeter sends to the target application.
+
+Practical implementation:
+- Created an HTTP Request Sampler named Tata1mg Homepage Request.
+- Configured the HTTP method as GET.
+- Configured the request path as `/`.
+- Used HTTPS and `www.1mg.com` through HTTP Request Defaults.
+
+4.5 HTTP Request Defaults
+
+HTTP Request Defaults allows common request settings to be configured in one place.
+
+Practical implementation:
+- Added HTTP Request Defaults under the Thread Group.
+- Configured the protocol as HTTPS.
+- Configured the server name as `www.1mg.com`.
+- Cleared the protocol and server name from the individual HTTP Request Sampler so that it inherits these settings.
+
+ 4.6 HTTP Header Manager
+
+HTTP Header Manager is used to configure headers that are sent along with HTTP requests.
+
+Practical implementation:
+- Added HTTP Header Manager under the HTTP Request Sampler.
+- Configured the `Accept` header.
+- Set its value to `text/html`.
+
+4.7 Response Assertion
+
+Response Assertions are used to validate whether an HTTP response meets the expected condition.
+
+Practical implementation:
+- Added a Response Assertion under the HTTP Request Sampler.
+- Selected Response Code as the field to test.
+- Configured the matching rule as Equals.
+- Set the expected response code to `200`.
+
+4.8 CSV Data Set Config
+
+CSV Data Set Config allows JMeter to read test data from an external CSV file and use it through variables.
+
+Practical implementation:
+- Added CSV Data Set Config under the Thread Group.
+- Created a CSV file named `search_data.csv`.
+- Configured the variable name as `Search_Product`.
+- Configured the first line to be ignored because it contains the column header.
+- Added sample product data.
+
+Sample CSV data:
+
+```csv
+Search_Product
+Paracetamol
+Cetirizine
+Dolo 650
+```
+
+The variable `${Search_Product}` can be used in HTTP requests to read the corresponding product value from the CSV file.
+
+4.9 Listeners
+
+Listeners are used to view and analyse test execution results.
+
+The following Listeners were added:
+
+**View Results Tree**
+- Displays individual request and response details.
+- Helps inspect response codes and response data.
+
+**Summary Report**
+- Displays overall request statistics.
+- Includes average, minimum and maximum response times, throughput and error percentage.
+
+**Aggregate Report**
+- Provides aggregated performance statistics.
+- Helps analyse response time, throughput, request failures and percentiles.
+
+5. Basic Performance Testing Concepts
+
+**Load Testing**
+
+Evaluates application behaviour under an expected user load.
+
+**Stress Testing**
+
+Evaluates application behaviour when the workload increases beyond its expected capacity.
+
+**Spike Testing**
+
+Evaluates application behaviour when traffic increases suddenly.
+
+**Endurance Testing**
+
+Evaluates application stability under sustained load over a longer period.
+
+6. Important Performance Metrics
+
+| Metric | Description |
+|---|---|
+| Response Time | Time taken by the application to respond |
+| Throughput | Number of requests processed over a period |
+| Error Percentage | Percentage of failed requests |
+| Average Response Time | Average time taken to process requests |
+| 90th Percentile | Time within which 90% of requests complete |
+| 95th Percentile | Time within which 95% of requests complete |
+
+ 7. Practical Implementation and Project Organization
+
+A basic JMeter test plan was created using Tata 1mg as the reference application.
+
+The implementation includes:
+
+- Test Plan creation.
+- Thread Group configuration.
+- HTTP Request Sampler configuration.
+- HTTP Request Defaults.
+- HTTP Header Manager.
+- Response Assertion.
+- CSV Data Set Config.
+- View Results Tree Listener.
+- Summary Report Listener.
+- Aggregate Report Listener.
+- Saving the test plan in `.jmx` format.
+
+The Performance-Testing folder was organized to separate application-specific files and common JMeter components.
+
+Current project structure:
+
+```text
+Performance-Testing/
+│
+├── Applications/
+│   └── Tata1mg/
+│       ├── Documentation/
+│       │   └── Performance Testing KRA
+│       │
+│       └── Test-Data/
+│           └── search_data.csv
+│
+└── Tata1mg-Common/
+    └── Test-Plan/
+        └── Tata1mg_Performance_Test.jmx
+```
+
+8. Execution Status and Limitations
+
+- The basic JMeter test plan has been configured and saved.
+- HTTP request configuration, headers, assertions and CSV-based test data have been added.
+- Listeners have been added for viewing and analysing performance results.
+- The test plan has not yet been executed against the public Tata 1mg website.
+- Automated traffic requires authorization and an approved test environment.
+- Actual performance measurements and result analysis are therefore pending.
+- Reusable application configuration is the next implementation step.
+
+9. Learning Outcome
+
+Through this activity, I gained an understanding of:
+
+- Apache JMeter and its interface.
+- Test Plan structure and configuration.
+- Thread Groups and virtual user settings.
+- HTTP Request Samplers and HTTP Request Defaults.
+- HTTP Header Manager and Response Assertions.
+- CSV-based test data handling.
+- Listeners and their purpose.
+- Basic performance testing concepts.
+- Important performance metrics.
+- Organizing JMeter test files and application-specific test data.
+
+This practical exercise provides a foundation for further learning and developing reusable performance testing setups using Apache JMeter.
+
+ 10. Next Steps
+
+- Create a centralized application configuration using `application.properties`.
+- Configure reusable application URL and environment settings.
+- Connect application properties with JMeter components.
+- Improve CSV-based dynamic test data handling.
+- Learn authentication and cookie management.
+- Explore Timers and request pacing.
+- Understand virtual user distribution, ramp-up and test duration.
+- Learn workload configuration for Load, Stress, Spike and Endurance Testing.
+- Practise performance result analysis and reporting.
+- Push the JMeter implementation and documentation to GitHub.
